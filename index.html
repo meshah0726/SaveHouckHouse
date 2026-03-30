@@ -6,171 +6,83 @@
     <title>Save Houck House — OSU Choose Your Own Adventure</title>
     <style>
       :root{
-        --bg: #0b0f14;
-        --panel: #101823;
-        --panel2:#0e1520;
-        --text:#e8eef7;
-        --muted:#aab6c6;
-        --accent:#ff3b3b;
-        --accent2:#47b7ff;
-        --good:#37d67a;
-        --warn:#ffcc00;
-        --bad:#ff5a5a;
-        --btn:#1b2a3b;
-        --btnHover:#233a52;
-        --border:#223246;
-        --shadow: rgba(0,0,0,0.35);
-        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --bg:#0b0f14; --panel:#101823; --panel2:#0e1520;
+        --text:#e8eef7; --muted:#aab6c6;
+        --accent:#ff3b3b; --accent2:#47b7ff;
+        --good:#37d67a; --warn:#ffcc00; --bad:#ff5a5a;
+        --btn:#1b2a3b; --btnHover:#233a52; --border:#223246;
+        --shadow:rgba(0,0,0,0.35);
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
         --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       }
       *{ box-sizing:border-box; }
       body{
-        margin:0;
-        font-family: var(--sans);
-        background: radial-gradient(1200px 800px at 20% 10%, #101a2a 0%, var(--bg) 55%),
-                    radial-gradient(900px 700px at 90% 40%, #1a0f1f 0%, var(--bg) 60%);
-        color: var(--text);
+        margin:0; font-family:var(--sans); color:var(--text);
+        background:
+          radial-gradient(1200px 800px at 20% 10%, #101a2a 0%, var(--bg) 55%),
+          radial-gradient(900px 700px at 90% 40%, #1a0f1f 0%, var(--bg) 60%);
       }
       header{
         padding: 18px 18px 10px;
         border-bottom: 1px solid var(--border);
         background: linear-gradient(180deg, rgba(16,24,35,0.9), rgba(16,24,35,0.6));
-        position: sticky;
-        top: 0;
-        z-index: 5;
+        position: sticky; top: 0; z-index: 5;
         backdrop-filter: blur(6px);
       }
-      .titleRow{
-        display:flex;
-        gap:12px;
-        align-items:center;
-        justify-content:space-between;
-        flex-wrap:wrap;
-      }
-      h1{
-        margin: 0;
-        font-size: 18px;
-        letter-spacing: 0.2px;
-      }
-      .sub{
-        margin: 4px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      main{
-        padding: 16px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .grid{
-        display:grid;
-        grid-template-columns: 1.6fr 1fr;
-        gap: 14px;
-      }
-      @media (max-width: 900px){
-        .grid{ grid-template-columns: 1fr; }
-      }
+      .titleRow{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+      h1{ margin:0; font-size:18px; letter-spacing:0.2px; }
+      .sub{ margin:4px 0 0; color:var(--muted); font-size:13px; }
+      main{ padding:16px; max-width:1150px; margin:0 auto; }
+      .grid{ display:grid; grid-template-columns: 1.6fr 1fr; gap:14px; }
+      @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
       .card{
         background: linear-gradient(180deg, rgba(16,24,35,0.92), rgba(14,21,32,0.92));
         border: 1px solid var(--border);
         border-radius: 14px;
         box-shadow: 0 10px 30px var(--shadow);
-        overflow: hidden;
+        overflow:hidden;
       }
       .cardHeader{
         padding: 12px 14px;
         border-bottom: 1px solid var(--border);
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap: 10px;
+        display:flex; align-items:center; justify-content:space-between; gap:10px;
       }
-      .cardHeader h2{
-        margin:0;
-        font-size: 14px;
-        letter-spacing: 0.25px;
-        color: #dfe8f6;
-        font-weight: 700;
-      }
-      .pillRow{
-        display:flex;
-        flex-wrap:wrap;
-        gap: 8px;
-        justify-content:flex-end;
-      }
+      .cardHeader h2{ margin:0; font-size:14px; letter-spacing:0.25px; color:#dfe8f6; font-weight:700; }
+      .pillRow{ display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
       .pill{
-        font-family: var(--mono);
-        font-size: 12px;
-        padding: 6px 8px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
+        font-family:var(--mono); font-size:12px;
+        padding:6px 8px; border-radius:999px;
+        border:1px solid var(--border);
         background: rgba(27,42,59,0.6);
-        color: var(--muted);
-        user-select:none;
+        color:var(--muted); user-select:none;
       }
-      .pill strong{ color: var(--text); font-weight: 700; }
-      .story{
-        padding: 14px;
-        line-height: 1.55;
-        font-size: 15px;
-        min-height: 280px;
-      }
+      .pill strong{ color:var(--text); font-weight:700; }
+      .story{ padding:14px; line-height:1.55; font-size:15px; min-height: 280px; }
       .story p{ margin: 0 0 10px; }
-      .story .mono{
-        font-family: var(--mono);
-        color: #d7e3f7;
-      }
-      .log{
-        padding: 10px 14px 14px;
-        border-top: 1px solid var(--border);
-        background: rgba(0,0,0,0.08);
-      }
-      .logTitle{
-        margin: 0 0 8px;
-        font-size: 12px;
-        color: var(--muted);
-        letter-spacing: 0.3px;
-      }
-      .logList{
-        margin: 0;
-        padding-left: 18px;
-        color: #cfe0f8;
-        font-size: 13px;
-      }
-      .choices{
-        padding: 14px;
-        display:grid;
-        gap: 10px;
-      }
+      .mono{ font-family:var(--mono); color:#d7e3f7; }
+      .choices{ padding:14px; display:grid; gap:10px; }
       button.choice{
-        width: 100%;
-        text-align:left;
-        border: 1px solid var(--border);
+        width:100%; text-align:left;
+        border:1px solid var(--border);
         background: linear-gradient(180deg, rgba(27,42,59,0.95), rgba(18,30,44,0.95));
-        color: var(--text);
-        padding: 12px 12px;
-        border-radius: 12px;
+        color:var(--text);
+        padding:12px 12px; border-radius:12px;
         cursor:pointer;
         transition: transform 0.04s ease, background 0.15s ease, border-color 0.15s ease;
-        font-size: 14px;
-        line-height:1.35;
+        font-size:14px; line-height:1.35;
       }
-      button.choice:hover{
-        background: linear-gradient(180deg, rgba(35,58,82,0.98), rgba(21,38,56,0.98));
-        border-color: #2f4764;
-      }
+      button.choice:hover{ background: linear-gradient(180deg, rgba(35,58,82,0.98), rgba(21,38,56,0.98)); border-color:#2f4764; }
       button.choice:active{ transform: translateY(1px); }
-      button.choice[disabled]{
-        cursor:not-allowed;
-        opacity: 0.6;
+      button.choice[disabled]{ cursor:not-allowed; opacity:0.6; }
+      .log{
+        padding:10px 14px 14px;
+        border-top:1px solid var(--border);
+        background: rgba(0,0,0,0.08);
       }
-      .rightCol{
-        display:grid;
-        gap: 14px;
-      }
-      .panelBody{
-        padding: 14px;
-      }
+      .logTitle{ margin:0 0 8px; font-size:12px; color:var(--muted); letter-spacing:0.3px; }
+      .logList{ margin:0; padding-left:18px; color:#cfe0f8; font-size:13px; }
+      .rightCol{ display:grid; gap:14px; }
+      .panelBody{ padding:14px; }
       .sectionTitle{
         margin: 0 0 10px;
         font-size: 12px;
@@ -178,47 +90,20 @@
         letter-spacing: 0.3px;
         text-transform: uppercase;
       }
-      .kv{
-        display:grid;
-        grid-template-columns: 1fr auto;
-        gap: 8px 10px;
-        align-items:center;
-        margin-bottom: 12px;
-      }
-      .kv .k{
-        color: #cfe0f8;
-        font-size: 13px;
-      }
-      .kv .v{
-        font-family: var(--mono);
-        font-size: 13px;
-        color: #dfe8f6;
-      }
+      .kv{ display:grid; grid-template-columns: 1fr auto; gap:8px 10px; align-items:center; margin-bottom:12px; }
+      .kv .k{ color:#cfe0f8; font-size:13px; }
+      .kv .v{ font-family:var(--mono); font-size:13px; color:#dfe8f6; }
       .barOuter{
-        height: 10px;
-        border-radius: 999px;
+        height:10px; border-radius:999px;
         background: rgba(255,255,255,0.08);
         border: 1px solid rgba(255,255,255,0.08);
         overflow:hidden;
       }
-      .barInner{
-        height: 100%;
-        width: 50%;
-        background: linear-gradient(90deg, var(--good), var(--accent2));
-      }
-      .hint{
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-      .smallBtnRow{
-        display:flex;
-        gap: 10px;
-        flex-wrap:wrap;
-        margin-top: 12px;
-      }
+      .barInner{ height:100%; width:50%; background: linear-gradient(90deg, var(--good), var(--accent2)); }
+      .hint{ color:var(--muted); font-size:13px; line-height:1.5; }
+      .smallBtnRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
       .smallBtn{
-        border: 1px solid var(--border);
+        border:1px solid var(--border);
         background: rgba(27,42,59,0.55);
         color: var(--text);
         padding: 9px 10px;
@@ -227,11 +112,7 @@
         font-size: 13px;
       }
       .smallBtn:hover{ background: rgba(35,58,82,0.65); border-color:#2f4764; }
-      .tagRow{
-        display:flex;
-        flex-wrap:wrap;
-        gap: 8px;
-      }
+      .tagRow{ display:flex; flex-wrap:wrap; gap:8px; }
       .tag{
         font-size: 12px;
         padding: 6px 8px;
@@ -241,24 +122,59 @@
         color: #cfe0f8;
       }
       .tag.dead{
-        color: #ffd1d1;
+        color:#ffd1d1;
         border-color: rgba(255,90,90,0.4);
         background: rgba(255,90,90,0.08);
         text-decoration: line-through;
       }
-      .ending{
-        border-top: 1px dashed rgba(255,255,255,0.14);
-        margin-top: 12px;
-        padding-top: 12px;
+      .ending{ border-top: 1px dashed rgba(255,255,255,0.14); margin-top: 12px; padding-top: 12px; }
+      .ending.good{ color:#ccffe0; }
+      .ending.bad{ color:#ffd1d1; }
+      .ending.neutral{ color:#ffecc2; }
+      .tiny{ font-size:12px; color:var(--muted); font-family:var(--mono); }
+      .split{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      @media (max-width: 900px){ .split{ grid-template-columns: 1fr; } }
+      input.text{
+        width:100%;
+        padding:10px 10px;
+        border-radius: 10px;
+        border:1px solid var(--border);
+        background: rgba(0,0,0,0.15);
+        color: var(--text);
+        font-size: 14px;
+        outline:none;
       }
-      .ending.good{ color: #ccffe0; }
-      .ending.bad{ color: #ffd1d1; }
-      .ending.neutral{ color: #ffecc2; }
-      .tiny{
-        font-size: 12px;
-        color: var(--muted);
-        font-family: var(--mono);
+      table{ width:100%; border-collapse: collapse; font-size: 13px; }
+      th, td{ text-align:left; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      th{ color:#dfe8f6; font-weight:700; }
+      td{ color:#cfe0f8; }
+      .right{ text-align:right; }
+
+      /* sprites */
+      .spriteRow{ display:flex; gap:10px; align-items:flex-start; }
+      .sprite{
+        width: 72px; height: 72px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,0.18);
+        display:flex; align-items:center; justify-content:center;
+        overflow:hidden;
+        flex: 0 0 auto;
       }
+      .sprite img{ width: 72px; height: 72px; object-fit: cover; image-rendering: pixelated; }
+      .spriteFallback{ font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 6px; text-align:center; }
+      .rosterMini{ display:flex; flex-wrap:wrap; gap:8px; }
+      .miniAvatar{
+        width: 34px; height: 34px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,0.18);
+        overflow:hidden;
+        display:flex; align-items:center; justify-content:center;
+      }
+      .miniAvatar img{ width:34px; height:34px; object-fit:cover; image-rendering: pixelated; }
+      .miniAvatar.dead{ filter: grayscale(1) contrast(0.9); opacity: 0.55; }
+      .miniAvatar span{ font-family:var(--mono); font-size:10px; color:var(--muted); }
     </style>
   </head>
   <body>
@@ -266,11 +182,13 @@
       <div class="titleRow">
         <div>
           <h1>Save Houck House</h1>
-          <div class="sub">A choose‑your‑own adventure at Ohio State University (OSU). You play as Mitchell (Floor 3 RA).</div>
+          <div class="sub">Serious choices. Real consequences. A few inside jokes. You are Mitchell (Floor 3 RA).</div>
         </div>
         <div class="pillRow">
           <div class="pill"><strong>Date</strong>: <span id="pillDate"></span></div>
           <div class="pill"><strong>Location</strong>: <span id="pillLoc">Houck House — Floor 3</span></div>
+          <div class="pill"><strong>Threat</strong>: <span id="pillThreat">—</span></div>
+          <div class="pill"><strong>Profile</strong>: <span id="pillProfile">—</span></div>
         </div>
       </div>
     </header>
@@ -281,7 +199,8 @@
           <div class="cardHeader">
             <h2 id="sceneTitle">Scene</h2>
             <div class="pillRow">
-              <div class="pill"><strong>Threat</strong>: <span id="pillThreat">Unknown</span></div>
+              <div class="pill"><strong>Alive</strong>: <span id="aliveCount">0</span>/<span id="totalCount">0</span></div>
+              <div class="pill"><strong>Rating</strong>: <span id="pillRating">—</span></div>
             </div>
           </div>
 
@@ -297,179 +216,259 @@
 
         <aside class="rightCol">
           <section class="card">
-            <div class="cardHeader">
-              <h2>Status</h2>
-              <div class="pillRow">
-                <div class="pill"><strong>Alive</strong>: <span id="aliveCount">0</span>/<span id="totalCount">0</span></div>
-              </div>
-            </div>
+            <div class="cardHeader"><h2>Status</h2></div>
             <div class="panelBody">
               <div class="kv">
                 <div class="k">Dorm Safety</div>
                 <div class="v" id="safetyValue">50</div>
               </div>
               <div class="barOuter"><div class="barInner" id="safetyBar"></div></div>
+
+              <div class="kv" style="margin-top:12px">
+                <div class="k">Closure Risk</div>
+                <div class="v" id="closureValue">20</div>
+              </div>
+              <div class="barOuter"><div class="barInner" id="closureBar"></div></div>
+
               <div class="hint" style="margin-top:10px">
-                Keep people alive and prevent Houck House from being shut down. Your choices change
-                safety, casualties, and whether OSU administration closes the dorm.
+                Each run randomizes the threat. Mitchell can die. Your final <strong>0–10 rating</strong> depends on deaths,
+                injuries, and whether Houck gets shut down.
               </div>
 
               <div class="smallBtnRow">
-                <button class="smallBtn" id="btnRestart">Restart</button>
-                <button class="smallBtn" id="btnSave">Save Game</button>
+                <button class="smallBtn" id="btnNewRun">New Run</button>
+                <button class="smallBtn" id="btnRestart">Restart Run</button>
+                <button class="smallBtn" id="btnSave">Save Run</button>
                 <button class="smallBtn" id="btnLoad">Load Save</button>
               </div>
 
               <div class="tiny" style="margin-top:10px">
-                Tip: If you get stuck, restart and try different choices.
+                Global leaderboard requires Firebase config in the code.
               </div>
             </div>
           </section>
 
           <section class="card">
-            <div class="cardHeader">
-              <h2>Floor 3 Roster (Main Characters)</h2>
-            </div>
+            <div class="cardHeader"><h2>Roster (Sprites)</h2></div>
             <div class="panelBody">
-              <div class="sectionTitle">Houck Floor 3</div>
-              <div class="tagRow" id="rosterTags"></div>
-              <div class="sectionTitle" style="margin-top:14px">Notes</div>
-              <div class="hint" id="notes">
-                Rooms: 316 (Ella/Emma/Sophia/Mallory), 319 (John/Mo/Cole/Roshen), 320 (Myliana/Karissa/Laynie/Avery).
-              </div>
-            </div>
-          </section>
-
-          <section class="card">
-            <div class="cardHeader">
-              <h2>Places (for later scenes)</h2>
-            </div>
-            <div class="panelBody">
-              <div class="tagRow">
-                <span class="tag">Scott Dining Hall</span>
-                <span class="tag">North Rec</span>
-                <span class="tag">RPAC</span>
-                <span class="tag">Taylor Tower (flooding)</span>
-                <span class="tag">Jones Tower</span>
-                <span class="tag">Celeste Lab</span>
-                <span class="tag">Fisher</span>
-                <span class="tag">Thr3es</span>
-                <span class="tag">Big Bar</span>
-                <span class="tag">Newman Center</span>
-                <span class="tag">Scott House</span>
-              </div>
+              <div class="sectionTitle">Main + Mitchell</div>
+              <div class="rosterMini" id="rosterMini"></div>
               <div class="hint" style="margin-top:10px">
-                We can expand the story to include these locations once the core Houck House crisis is finished.
+                Sprites missing for Karissa and Laynie (that’s okay). Those show as initials.
               </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="cardHeader"><h2>Leaderboard</h2></div>
+            <div class="panelBody">
+              <div class="sectionTitle">Top scores</div>
+              <div id="leaderboard"></div>
+              <div class="smallBtnRow">
+                <button class="smallBtn" id="btnRefreshScores">Refresh</button>
+                <button class="smallBtn" id="btnClearLocalScores">Clear Local (backup)</button>
+              </div>
+              <div class="tiny" style="margin-top:10px" id="lbNote"></div>
             </div>
           </section>
         </aside>
       </div>
     </main>
 
-    <script>
-      // ====== GAME DATA ======
-      const TODAY = "2026-03-30"; // user provided current date
+    <script type="module">
+      // =========================
+      // Firebase setup (YOU MUST PASTE YOUR CONFIG BELOW)
+      // =========================
+      const firebaseConfig = null;
+      // Example:
+      // const firebaseConfig = {
+      //   apiKey: "...",
+      //   authDomain: "...",
+      //   projectId: "...",
+      //   storageBucket: "...",
+      //   messagingSenderId: "...",
+      //   appId: "..."
+      // };
+
+      // We use Firebase only if config exists. Otherwise we fall back to local-only.
+      let firebaseEnabled = false;
+      let fb = {
+        init: null,
+        getTopScores: async () => [],
+        addScore: async () => { throw new Error("Firebase not configured"); }
+      };
+
+      async function tryInitFirebase(){
+        if (!firebaseConfig || !firebaseConfig.projectId) return;
+        try{
+          const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js");
+          const {
+            getFirestore, collection, addDoc, query, orderBy, limit, getDocs
+          } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
+
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+
+          fb.addScore = async (entry) => {
+            await addDoc(collection(db, "scores"), entry);
+          };
+
+          fb.getTopScores = async () => {
+            const q = query(collection(db, "scores"), orderBy("rating", "desc"), orderBy("endedAt", "desc"), limit(20));
+            const snap = await getDocs(q);
+            return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          };
+
+          firebaseEnabled = true;
+        }catch(e){
+          console.error(e);
+          firebaseEnabled = false;
+        }
+      }
+
+      // ====== CONSTANTS / CAST ======
+      const TODAY = "2026-03-30";
+
+      const SPRITES = {
+        mitchell: "https://www.avatarsinpixels.com/chibi/eyJTaG9lcyI6IjEiLCJQYW50cyI6IjE4IiwiVG9wIjoiNyIsIk1vdXRoIjoiMTkiLCJIYWlyVG9wIjoiNiIsInNraW5Ub25lIjoiODkzOTBiIiwiaGFpclRvbmUiOiIwMDAwMDAiLCJleWVzVG9uZSI6IjZlMzcwYiIsInBhbnRzVG9uZSI6ImFjYWNhYyIsInBhbnRzVG9uZTIiOiIwMDI5MzYiLCJ0b3BUb25lIjoiMDA0NzYyIiwic2hvZXNUb25lIjoiOWYwYjBiIn0=/1/show.png",
+        john: "https://www.avatarsinpixels.com/chibi/eyJCb2R5IjoiMSIsIlNob2VzIjoiMSIsIlBhbnRzIjoiNSIsIlRvcCI6IjciLCJFeWVicm93cyI6IjEiLCJFeWVzIjoiMiIsIk1vdXRoIjoiMTkiLCJIYWlyVG9wIjoiMyIsInNraW5Ub25lIjoiZDlhOThkIiwiaGFpclRvbmUiOiI1ZDJiMTIiLCJleWVzVG9uZSI6IjI5MDA2ZiIsInBhbnRzVG9uZSI6IjAwMjkzNiIsInBhbnRzVG9uZTIiOiIwMDI5MzYiLCJ0b3BUb25lIjoiYmFiYWJhIiwic2hvZXNUb25lIjoiMDAwMDAwIn0=/1/show.png",
+        mo: "https://www.avatarsinpixels.com/chibi/eyJTaG9lcyI6IjEiLCJQYW50cyI6IjEiLCJUb3AiOiI1IiwiRXllYnJvd3MiOiIxIiwiRXllcyI6IjciLCJNb3V0aCI6IjQiLCJIYWlyVG9wIjoiMyIsInNraW5Ub25lIjoiYmY4ODY3IiwiaGFpclRvbmUiOiIwMDAwMDAiLCJoYWlyVG9uZTIiOiJmNWQ4MGQiLCJleWVzVG9uZSI6IjU2MmUwMiIsInBhbnRzVG9uZSI6IjQyNDE0MSIsInBhbnRzVG9uZTIiOiI4ZThlOGUiLCJ0b3BUb25lIjoiM2Y3YmFlIiwidG9wVG9uZTIiOiJkOWRmMTUiLCJzaG9lc1RvbmUiOiJmZmZmZmYifQ==/1/show.png",
+        cole: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiIxIiwiU2hvZXMiOiIxIiwiUGFudHMiOiIyIiwiVG9wIjoiNyIsIkV5ZWJyb3dzIjoiMSIsIkV5ZXMiOiIxIiwiTW91dGgiOiIwIiwiSGFpclRvcCI6IjQiLCJza2luVG9uZSI6ImU4YmVhNiIsImhhaXJUb25lIjoiNmU0NzBiIiwiZXllc1RvbmUiOiIwYzYzMjIiLCJwYW50c1RvbmUiOiIxNDFmMjIiLCJwYW50c1RvbmUyIjoiMDAyOTM2IiwidG9wVG9uZSI6ImRlZGVkZSIsInNob2VzVG9uZSI6ImIzYjNiMyJ9/1/show.png",
+        roshen: "https://www.avatarsinpixels.com/chibi/eyJCb2R5IjoiMSIsIlNob2VzIjoiMSIsIlBhbnRzIjoiMTgiLCJUb3AiOiI1IiwiRXllcyI6IjEiLCJNb3V0aCI6IjE5IiwiSGFpclRvcCI6IjIiLCJza2luVG9uZSI6ImM2OTU3OCIsImhhaXJUb25lIjoiMDkwOTA5IiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiI4ODg4ODgiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6Ijk2MDgwOCIsInNob2VzVG9uZSI6ImIzYjNiMyJ9/1/show.png",
+        ella: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiIxMyIsIlNob2VzIjoiMSIsIlBhbnRzIjoiMTYiLCJUb3AiOiIxMSIsIkV5ZWJyb3dzIjoiMSIsIkV5ZXMiOiI3IiwiTW91dGgiOiIzIiwiSGFpclRvcCI6IjIiLCJza2luVG9uZSI6ImRhYmFhNyIsImhhaXJUb25lIjoiNGYzNDA2IiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiI0MTJhN2IiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6IjIwMDg5NiIsInRvcFRvbmUyIjoiZDlkZjE1Iiwic2hvZXNUb25lIjoiYjNiM2IzIn0=/1/show.png",
+        emma: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiIxMSIsIkJvZHkiOiIxIiwiU2hvZXMiOiIxIiwiUGFudHMiOiIxMiIsIlRvcCI6IjEzIiwiRXllcyI6IjMiLCJNb3V0aCI6IjE0IiwiSGFpclRvcCI6IjgiLCJza2luVG9uZSI6ImRhYmFhNyIsImhhaXJUb25lIjoiOWQ5MTBlIiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiJhNjJkODYiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6ImVlMGRkNSIsInRvcFRvbmUyIjoiZDlkZjE1Iiwic2hvZXNUb25lIjoiZWE3YzdjIn0=/1/show.png",
+        sophia: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiI1IiwiU2hvZXMiOiIxIiwiUGFudHMiOiIzIiwiVG9wIjoiMTUiLCJFeWVicm93cyI6IjEiLCJFeWVzIjoiMTEiLCJNb3V0aCI6IjExIiwiSGFpclRvcCI6IjMiLCJza2luVG9uZSI6ImM2OTU3OCIsImhhaXJUb25lIjoiM2MyNzA3IiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiIxZTA4MTgiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6IjNjOTFiZiIsInRvcFRvbmUyIjoiZDlkZjE1Iiwic2hvZXNUb25lIjoiZWE3YzdjIn0=/1/show.png",
+        mallory: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiIxMyIsIkJvZHkiOiIxIiwiU2hvZXMiOiIxIiwiUGFudHMiOiIzIiwiVG9wIjoiNSIsIkV5ZXMiOiI5IiwiTW91dGgiOiIzIiwiSGFpclRvcCI6IjQiLCJza2luVG9uZSI6ImM2OTU3OCIsImhhaXJUb25lIjoiNjk0NTBjIiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiIxZTA4MTgiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6ImI0M2NiZiIsInRvcFRvbmUyIjoiZDlkZjE1Iiwic2hvZXNUb25lIjoiN2NhZWVhIn0=/1/show.png",
+        myliana: "https://www.avatarsinpixels.com/chibi/eyJIYWlyTG93ZXIiOiIxNCIsIkJvZHkiOiIxIiwiU2hvZXMiOiIyIiwiUGFudHMiOiIxNSIsIlRvcCI6IjEiLCJFeWVicm93cyI6IjEiLCJFeWVzIjoiMTAiLCJNb3V0aCI6IjIyIiwiSGFpclRvcCI6IjgiLCJza2luVG9uZSI6ImM2OTU3OCIsImhhaXJUb25lIjoiMDAwMDAwIiwiaGFpclRvbmUyIjoiZjVkODBkIiwiZXllc1RvbmUiOiI1NjJlMDIiLCJwYW50c1RvbmUiOiJjNjM1MzUiLCJwYW50c1RvbmUyIjoiOGU4ZThlIiwidG9wVG9uZSI6ImJmM2MzYyIsInRvcFRvbmUyIjoiZDlkZjE1Iiwic2hvZXNUb25lIjoiYzExZjFmIn0=/1/show.png",
+      };
 
       const MAIN = {
-        john: { id:"john", name:"John", traits:["farts a lot","mysterious","Spongebob fan"], room:"319", alive:true },
-        mo: { id:"mo", name:"Mo", traits:["basketball","wakes up early","bio pre-med"], room:"319", alive:true },
-        cole: { id:"cole", name:"Cole", traits:["aero engineer","doesn't eat much","has beef with Emma"], room:"319", alive:true },
-        roshen: { id:"roshen", name:"Roshen", traits:["Rainbow 6 Siege","goes home weekends","girlfriend Caroline"], room:"319", alive:true },
-        ella: { id:"ella", name:"Ella", traits:["mom vibe","talks about Greene, OH"], room:"316", alive:true },
-        emma: { id:"emma", name:"Emma", traits:["Queen of Long Island","yoga (crow pose)","ZTA"], room:"316", alive:true },
-        sophia: { id:"sophia", name:"Sophia", traits:["loud","drinks weekly","business major"], room:"316", alive:true },
-        mallory: { id:"mallory", name:"Mallory", traits:["track runner","boyfriend Drew"], room:"316", alive:true },
-        myliana: { id:"myliana", name:"Myliana", traits:["aggressive","likes fighting","beef with Laynie/Karissa"], room:"320", alive:true },
-        karissa: { id:"karissa", name:"Karissa", traits:["tiny","baby voice sometimes","beef with Myliana"], room:"320", alive:true },
-        laynie: { id:"laynie", name:"Laynie", traits:["self-centered","confident","walks into 316 unannounced"], room:"320", alive:true },
+        john: { id:"john", name:"John", room:"319", alive:true },
+        mo: { id:"mo", name:"Mo", room:"319", alive:true },
+        cole: { id:"cole", name:"Cole", room:"319", alive:true },
+        roshen: { id:"roshen", name:"Roshen", room:"319", alive:true },
+        ella: { id:"ella", name:"Ella", room:"316", alive:true },
+        emma: { id:"emma", name:"Emma", room:"316", alive:true },
+        sophia: { id:"sophia", name:"Sophia", room:"316", alive:true },
+        mallory: { id:"mallory", name:"Mallory", room:"316", alive:true },
+        myliana: { id:"myliana", name:"Myliana", room:"320", alive:true },
+        karissa: { id:"karissa", name:"Karissa", room:"320", alive:true },
+        laynie: { id:"laynie", name:"Laynie", room:"320", alive:true },
       };
 
-      // Non-main / cameos (can be used in some scenes)
-      const CAMEOS = {
-        avery: { name:"Avery", location:"Houck 320" },
-        fortnite: { name:"Fortnite Boyz", location:"Houck Floor 3" },
-        sam: { name:"Sam", location:"Houck Floor 1", note:"self-proclaimed 'king of houck'" },
-        will: { name:"Will", location:"Scott House" },
-        liam: { name:"Liam", location:"OSU" },
-        cooper: { name:"Cooper", location:"OSU" },
-        mrscott: { name:"Mr Scott", location:"Scott Dining Hall", note:"smells like pickles; creator of Waffletopia" },
-        bagelboss: { name:"Bagel Boss", location:"Scott Dining Hall", note:"grumpy old lady" },
-      };
+      const PLAYER = { id:"mitchell", name:"Mitchell", role:"Floor 3 RA", alive:true };
 
-      // ====== GAME STATE ======
-      function freshState(){
+      const THREATS = [
+        { id: "chem_flood", name: "Chemical fumes + flooding", opener: "A sharp chemical smell creeps under your door. The lights flicker. From the stairwell, you hear water rushing.", notes: "Rumor: something with a Celeste Lab sticker is leaking near a vent. Floodwater is spreading it." },
+        { id: "fire_alarm_real", name: "Fire + blocked exit", opener: "Smoke alarms start chirping, then screaming. Someone yells 'FIRE'—but the hallway looks clear at first.", notes: "A small electrical fire may be behind a wall panel. Panic can turn this deadly." },
+        { id: "intruder", name: "Intruder + misinformation", opener: "A resident reports a stranger trying door handles on Floor 3. Half the floor thinks it’s a prank. Half is terrified.", notes: "If you mis-handle communication, people will hide instead of evacuating." },
+        { id: "outbreak", name: "Sudden illness outbreak", opener: "Multiple residents start vomiting at once. Rumors explode: food poisoning? virus? something in the water?", notes: "You must separate sick vs. healthy, get help, and prevent stampede panic." },
+        { id: "gas_only", name: "Gas leak (silent, fast)", opener: "The air feels heavy. A few people complain of headaches. Nobody sees anything—until someone collapses.", notes: "Ventilation choices matter. Delays kill." }
+      ];
+
+      const SAVE_KEY = "save_houck_house_run_v3";
+      const LOCAL_SCORES_KEY = "save_houck_house_scores_local_v3";
+      const PROFILE_KEY = "save_houck_house_profile_v3";
+
+      function pickThreat(){ return THREATS[Math.floor(Math.random() * THREATS.length)]; }
+
+      function freshState(profileName){
+        const threat = pickThreat();
         return {
           date: TODAY,
-          location: "Houck House — Floor 3",
-          threat: "Gas leak + flooding",
-          scene: "intro",
-          safety: 55,          // 0-100
-          dormClosureRisk: 20, // 0-100
+          profile: profileName || "Guest",
+          threatId: threat.id,
+          threatName: threat.name,
+          threatOpener: threat.opener,
+          threatNotes: threat.notes,
+
+          location: "Houck House — Floor 3 (RA Desk)",
+          scene: "start",
           log: [],
+
+          safety: 55,
+          closureRisk: 20,
+
+          player: { ...PLAYER, alive:true },
           people: Object.fromEntries(Object.entries(MAIN).map(([k,v]) => [k, { ...v } ])),
+
           flags: {
             called911: false,
             pulledAlarm: false,
             evacuated: false,
-            checked319: false,
             checked316: false,
+            checked319: false,
             checked320: false,
-            gotMoHelp: false,
-            gotEmmaYogaBreath: false,
-            gotMylianaToChill: false,
-            spokeToSam: false,
-            usedTowels: false,
-            foundSource: false
+            containedSource: false,
+            escalatedRumors: false,
           }
         };
       }
 
-      let state = freshState();
+      let state = freshState(loadProfile());
 
-      // ====== UI HELPERS ======
       const $ = (id) => document.getElementById(id);
-
-      function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+      const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
       function addLog(text){
         state.log.unshift(text);
         if (state.log.length > 8) state.log.pop();
       }
 
-      function alivePeople(){
-        return Object.values(state.people).filter(p => p.alive);
+      function aliveResidents(){ return Object.values(state.people).filter(p => p.alive).length; }
+      function totalResidents(){ return Object.values(state.people).length; }
+      function deadResidents(){ return Object.values(state.people).filter(p => !p.alive).length; }
+
+      function computeRating10(){
+        const deaths = deadResidents();
+        const mitchellDead = state.player.alive ? 0 : 1;
+        let score = 10;
+        score -= deaths * 1.4;
+        score -= mitchellDead * 2.0;
+        score -= Math.max(0, state.closureRisk - 40) / 18;
+        score -= Math.max(0, 60 - state.safety) / 25;
+        score = clamp(score, 0, 10);
+        return Math.round(score * 10) / 10;
       }
 
-      function updateRoster(){
-        const tags = $("rosterTags");
-        tags.innerHTML = "";
-        for (const p of Object.values(state.people)){
-          const span = document.createElement("span");
-          span.className = "tag" + (p.alive ? "" : " dead");
-          span.textContent = `${p.name} (Rm ${p.room})`;
-          tags.appendChild(span);
-        }
-        $("aliveCount").textContent = alivePeople().length;
-        $("totalCount").textContent = Object.values(state.people).length;
+      function escapeHtml(s){
+        return String(s)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
       }
 
-      function updateStatus(){
+      function sceneIsEnding(id){ return id.startsWith("end_"); }
+
+      function updateBars(){
         $("pillDate").textContent = state.date;
         $("pillLoc").textContent = state.location;
-        $("pillThreat").textContent = state.threat;
+        $("pillThreat").textContent = state.threatName;
+        $("pillProfile").textContent = state.profile;
+
+        $("aliveCount").textContent = String(aliveResidents() + (state.player.alive ? 1 : 0));
+        $("totalCount").textContent = String(totalResidents() + 1);
+
+        $("pillRating").textContent = sceneIsEnding(state.scene) ? computeRating10().toFixed(1) : "—";
 
         $("safetyValue").textContent = String(state.safety);
-        const pct = clamp(state.safety, 0, 100);
-        $("safetyBar").style.width = pct + "%";
+        $("closureValue").textContent = String(state.closureRisk);
 
-        // color shift
-        const bar = $("safetyBar");
-        if (pct >= 70) bar.style.background = "linear-gradient(90deg, var(--good), var(--accent2))";
-        else if (pct >= 40) bar.style.background = "linear-gradient(90deg, var(--warn), var(--accent2))";
-        else bar.style.background = "linear-gradient(90deg, var(--bad), var(--accent))";
+        $("safetyBar").style.width = clamp(state.safety,0,100) + "%";
+        $("closureBar").style.width = clamp(state.closureRisk,0,100) + "%";
 
-        // log
+        const sb = $("safetyBar");
+        if (state.safety >= 70) sb.style.background = "linear-gradient(90deg, var(--good), var(--accent2))";
+        else if (state.safety >= 40) sb.style.background = "linear-gradient(90deg, var(--warn), var(--accent2))";
+        else sb.style.background = "linear-gradient(90deg, var(--bad), var(--accent));";
+
+        const cb = $("closureBar");
+        if (state.closureRisk <= 35) cb.style.background = "linear-gradient(90deg, var(--good), var(--accent2))";
+        else if (state.closureRisk <= 70) cb.style.background = "linear-gradient(90deg, var(--warn), var(--accent2))";
+        else cb.style.background = "linear-gradient(90deg, var(--bad), var(--accent));";
+
         const ul = $("logList");
         ul.innerHTML = "";
         for (const line of state.log){
@@ -478,21 +477,57 @@
           ul.appendChild(li);
         }
 
-        updateRoster();
+        renderRosterMini();
       }
 
-      function setStory(html){
-        $("story").innerHTML = html;
+      function renderRosterMini(){
+        const root = $("rosterMini");
+        root.innerHTML = "";
+
+        const ids = ["mitchell", ...Object.keys(state.people)];
+        for (const id of ids){
+          const alive = (id === "mitchell") ? state.player.alive : state.people[id].alive;
+          const name = (id === "mitchell") ? "Mitchell" : state.people[id].name;
+          const url = SPRITES[id] || null;
+
+          const box = document.createElement("div");
+          box.className = "miniAvatar" + (alive ? "" : " dead");
+          box.title = name + (alive ? "" : " (dead)");
+
+          if (url){
+            const img = document.createElement("img");
+            img.src = url;
+            img.alt = name;
+            img.onerror = () => {
+              box.innerHTML = "";
+              const span = document.createElement("span");
+              span.textContent = initials(name);
+              box.appendChild(span);
+            };
+            box.appendChild(img);
+          } else {
+            const span = document.createElement("span");
+            span.textContent = initials(name);
+            box.appendChild(span);
+          }
+
+          root.appendChild(box);
+        }
       }
 
-      function setTitle(text){
-        $("sceneTitle").textContent = text;
+      function initials(name){
+        const parts = String(name).trim().split(/\s+/).filter(Boolean);
+        const a = (parts[0] || "?").slice(0,1).toUpperCase();
+        const b = (parts[1] || "").slice(0,1).toUpperCase();
+        return (a + b) || "?";
       }
 
-      function setChoices(choices){
+      function setTitle(t){ $("sceneTitle").textContent = t; }
+      function setStory(html){ $("story").innerHTML = html; }
+      function setChoices(arr){
         const root = $("choices");
         root.innerHTML = "";
-        choices.forEach((c) => {
+        arr.forEach(c => {
           const btn = document.createElement("button");
           btn.className = "choice";
           btn.textContent = c.text;
@@ -502,845 +537,202 @@
         });
       }
 
-      function kill(personId, reason){
-        const p = state.people[personId];
-        if (!p || !p.alive) return;
-        p.alive = false;
-        state.safety = clamp(state.safety - 18, 0, 100);
-        state.dormClosureRisk = clamp(state.dormClosureRisk + 18, 0, 100);
-        addLog(`${p.name} died (${reason}).`);
-      }
-
-      function injureGroupPenalty(reason){
-        // a light penalty for "multiple people got hurt" without naming
-        state.safety = clamp(state.safety - 10, 0, 100);
-        state.dormClosureRisk = clamp(state.dormClosureRisk + 10, 0, 100);
-        addLog(`People were hurt (${reason}).`);
+      function spriteBlock(id, label){
+        const url = SPRITES[id] || null;
+        if (!url){
+          return `<div class="sprite"><div class="spriteFallback">${escapeHtml(label)}<br/><span class="tiny">(no sprite)</span></div></div>`;
+        }
+        return `<div class="sprite"><img src="${url}" alt="${escapeHtml(label)}" onerror="this.parentNode.innerHTML='<div class=\"spriteFallback\">${escapeHtml(label)}<br/><span class=\"tiny\">(image blocked)</span></div>'" /></div>`;
       }
 
       function safetyDelta(n, msg){
         state.safety = clamp(state.safety + n, 0, 100);
         if (msg) addLog(msg);
       }
-
       function closureDelta(n, msg){
-        state.dormClosureRisk = clamp(state.dormClosureRisk + n, 0, 100);
+        state.closureRisk = clamp(state.closureRisk + n, 0, 100);
         if (msg) addLog(msg);
       }
 
-      // ====== SCENES ======
-      function go(sceneId){
-        state.scene = sceneId;
-        render();
+      function killResident(id, reason){
+        const p = state.people[id];
+        if (!p || !p.alive) return;
+        p.alive = false;
+        safetyDelta(-18);
+        closureDelta(+12);
+        addLog(`${p.name} died (${reason}).`);
       }
 
-      function render(){
-        updateStatus();
-
-        const f = state.flags;
-        const alive = alivePeople().length;
-
-        // Lose condition: player "fails hard" (too unsafe or too many deaths)
-        const deadCount = Object.values(state.people).filter(p => !p.alive).length;
-
-        // Hard fail if 6+ main characters die
-        if (deadCount >= 6 && !sceneIdIsEnding(state.scene)){
-          state.scene = "ending_everyone_dies";
-        }
-
-        // Admin closes dorm if closure risk too high
-        if (state.dormClosureRisk >= 85 && !sceneIdIsEnding(state.scene)){
-          state.scene = "ending_dorm_closed";
-        }
-
-        // Safety too low can spiral
-        if (state.safety <= 10 && !sceneIdIsEnding(state.scene)){
-          state.scene = "ending_disaster";
-        }
-
-        switch(state.scene){
-          case "intro": return sceneIntro();
-          case "hall_smell": return sceneHallSmell();
-          case "call911_or_alarm": return sceneCall911OrAlarm();
-          case "evac_plan": return sceneEvacPlan();
-          case "check_rooms": return sceneCheckRooms();
-          case "room319": return sceneRoom319();
-          case "room316": return sceneRoom316();
-          case "room320": return sceneRoom320();
-          case "stairwell_flood": return sceneStairwellFlood();
-          case "talk_sam": return sceneTalkSam();
-          case "find_source": return sceneFindSource();
-          case "final_evacuate": return sceneFinalEvacuate();
-          case "ending_saved": return endingSaved();
-          case "ending_dorm_closed": return endingDormClosed();
-          case "ending_disaster": return endingDisaster();
-          case "ending_everyone_dies": return endingEveryoneDies();
-          default:
-            setTitle("Error");
-            setStory("<p>Unknown scene.</p>");
-            setChoices([{ text:"Restart", onChoose: restart }]);
-        }
-
-        function sceneIdIsEnding(id){
-          return id.startsWith("ending_");
-        }
+      function killMitchell(reason){
+        if (!state.player.alive) return;
+        state.player.alive = false;
+        safetyDelta(-25);
+        closureDelta(+18);
+        addLog(`Mitchell died (${reason}).`);
       }
 
-      function sceneIntro(){
-        setTitle("Houck House — Floor 3 (11:58 PM)");
-        state.location = "Houck House — Floor 3 (RA Desk)";
-        state.threat = "Unknown";
-
-        setStory(`
-          <p class="mono">You are Mitchell — Floor 3 RA, Junior.</p>
-          <p>It’s late. You hear laughter down the hall, a distant thump… and then something worse:</p>
-          <p><strong>a sharp chemical smell</strong> creeping under your door. At the same time, the hallway lights flicker once.</p>
-          <p>You can’t tell if it’s a prank, a broken pipe, or something that could kill everyone on Floor 3.</p>
-          <p>What do you do first?</p>
-        `);
-
-        setChoices([
-          {
-            text: "Step into the hallway and confirm the smell (do not panic yet).",
-            onChoose: () => {
-              addLog("You step into the hallway to investigate.");
-              go("hall_smell");
-            }
-          },
-          {
-            text: "Text the floor group chat: “Is anyone messing with chemicals or vaping?”",
-            onChoose: () => {
-              addLog("You text the floor group chat.");
-              closureDelta(+5, "Noise/complaints increase admin attention.");
-              go("hall_smell");
-            }
-          },
-          {
-            text: "Ignore it and go back to paperwork (bad idea).",
-            onChoose: () => {
-              addLog("You ignore the smell.");
-              state.threat = "Gas leak";
-              safetyDelta(-15, "The smell gets stronger.");
-              injureGroupPenalty("people panicked in the hall");
-              go("hall_smell");
-            }
-          }
-        ]);
+      // ====== Profile ======
+      function loadProfile(){
+        try{ return localStorage.getItem(PROFILE_KEY) || "Guest"; }
+        catch{ return "Guest"; }
+      }
+      function setProfile(name){
+        const cleaned = String(name || "").trim().slice(0,24) || "Guest";
+        localStorage.setItem(PROFILE_KEY, cleaned);
+        return cleaned;
       }
 
-      function sceneHallSmell(){
-        setTitle("Hallway Investigation");
-        state.location = "Houck House — Floor 3 Hallway";
-        state.threat = "Possible gas leak";
-
-        setStory(`
-          <p>The smell is real — like cleaning chemicals mixed with something metallic. A few doors are cracked open.</p>
-          <p>From <strong>Room 319</strong> you hear coughing. From <strong>Room 316</strong> someone yells, “Mitchell!!”</p>
-          <p>Down the stairwell, you hear <em>water rushing</em> — like a pipe burst.</p>
-          <p>This is now a multi-problem night: <strong>possible gas + flooding</strong>.</p>
-          <p>As RA, you need to pick your first big move.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Call 911 immediately (report possible gas leak + flooding in Houck House).",
-            onChoose: () => {
-              state.flags.called911 = true;
-              addLog("You call 911 and report a possible gas leak + flooding.");
-              safetyDelta(+10, "Dispatch is on the way.");
-              closureDelta(+8, "Admin attention increases (but it’s necessary).");
-              go("call911_or_alarm");
-            }
-          },
-          {
-            text: "Pull the fire alarm (force evacuation).",
-            onChoose: () => {
-              state.flags.pulledAlarm = true;
-              addLog("You pull the fire alarm. Sirens blare.");
-              safetyDelta(+6, "Evacuation starts fast.");
-              closureDelta(+12, "Alarm incident increases closure risk.");
-              go("call911_or_alarm");
-            }
-          },
-          {
-            text: "Try to handle it quietly: start knocking doors yourself (risky).",
-            onChoose: () => {
-              addLog("You try to handle it quietly.");
-              safetyDelta(-6, "You lose time.");
-              go("evac_plan");
-            }
-          }
-        ]);
-      }
-
-      function sceneCall911OrAlarm(){
-        setTitle("First Response");
-        state.location = "Houck House — Floor 3";
-        state.threat = "Gas leak + flooding";
-
-        const called = state.flags.called911;
-        const alarm = state.flags.pulledAlarm;
-
-        let text = `<p>Adrenaline hits. You can hear water below. The chemical smell is stronger near the stairwell.</p>`;
-        if (called) text += `<p><strong>911:</strong> “Help is on the way. Evacuate if possible. Don’t investigate the source if you feel dizzy.”</p>`;
-        if (alarm) text += `<p>The <strong>alarm</strong> is loud. Doors open. Some people are confused, some annoyed.</p>`;
-
-        text += `<p>Now you need a plan: evacuate Floor 3 and check the three key rooms (316, 319, 320).</p>`;
-
-        setStory(text);
-
-        setChoices([
-          {
-            text: "Start evacuation: direct everyone to stairs, then check rooms 316/319/320 quickly.",
-            onChoose: () => {
-              addLog("You start evacuation and prepare to sweep rooms.");
-              state.flags.evacuated = true;
-              safetyDelta(+6, "People start moving.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Go straight to the stairwell to see the flooding (could be the cause).",
-            onChoose: () => {
-              addLog("You head toward the stairwell.");
-              go("stairwell_flood");
-            }
-          },
-          {
-            text: "Text Sam (Floor 1 ‘king of houck’) for intel: ‘What’s happening downstairs?’",
-            onChoose: () => {
-              addLog("You text Sam for intel.");
-              go("talk_sam");
-            }
-          }
-        ]);
-      }
-
-      function sceneEvacPlan(){
-        setTitle("Make a Plan (No Sirens)");
-        state.location = "Houck House — Floor 3";
-        state.threat = "Gas leak + flooding";
-
-        setStory(`
-          <p>You decide not to trigger alarms yet. That means you must be <strong>fast</strong> and <strong>clear</strong>.</p>
-          <p>But people might not take you seriously until it’s too late.</p>
-          <p>You can either:</p>
-          <ul>
-            <li>start a calm evacuation yourself</li>
-            <li>or escalate now (call 911 / pull alarm)</li>
-          </ul>
-        `);
-
-        setChoices([
-          {
-            text: "Start a calm evacuation: “Everyone out. Smell + water issue. Move now.”",
-            onChoose: () => {
-              addLog("You start a calm evacuation.");
-              state.flags.evacuated = true;
-              safetyDelta(+2, "Some listen. Some don’t.");
-              closureDelta(-2, "No alarm means less admin heat (for now).");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Escalate: call 911 right now.",
-            onChoose: () => {
-              state.flags.called911 = true;
-              addLog("You call 911.");
-              safetyDelta(+8, "Help is on the way.");
-              closureDelta(+6, "Official incident logged.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Escalate: pull the fire alarm.",
-            onChoose: () => {
-              state.flags.pulledAlarm = true;
-              addLog("You pull the fire alarm.");
-              safetyDelta(+6, "Evacuation accelerates.");
-              closureDelta(+12, "Alarm incident increases closure risk.");
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneCheckRooms(){
-        setTitle("Room Sweep — Floor 3");
-        state.location = "Houck House — Floor 3 Hallway";
-        state.threat = "Gas leak + flooding";
-
-        const f = state.flags;
-        const anyChecked = f.checked316 || f.checked319 || f.checked320;
-
-        let intro = `
-          <p>You have to sweep the floor. The air is harsh now — breathing feels wrong.</p>
-          <p>Three rooms matter most tonight:</p>
-          <ul>
-            <li><strong>316</strong>: Ella, Emma, Sophia, Mallory</li>
-            <li><strong>319</strong>: John, Mo, Cole, Roshen</li>
-            <li><strong>320</strong>: Myliana, Karissa, Laynie, Avery</li>
-          </ul>
-          <p>Pick a room to check first.</p>
-        `;
-
-        if (!state.flags.called911 && !state.flags.pulledAlarm){
-          intro += `<p class="ending neutral"><strong>Warning:</strong> you still haven’t called 911 or pulled the alarm.</p>`;
-        }
-
-        if (anyChecked){
-          intro += `<p class="tiny">Checked: ${[
-            f.checked316 ? "316" : null,
-            f.checked319 ? "319" : null,
-            f.checked320 ? "320" : null
-          ].filter(Boolean).join(", ")}</p>`;
-        }
-
-        setStory(intro);
-
-        const choices = [];
-
-        choices.push({
-          text: f.checked319 ? "Room 319 (already checked)" : "Check Room 319 (coughing sounds).",
-          disabled: f.checked319,
-          onChoose: () => go("room319")
-        });
-
-        choices.push({
-          text: f.checked316 ? "Room 316 (already checked)" : "Check Room 316 (someone yelling for you).",
-          disabled: f.checked316,
-          onChoose: () => go("room316")
-        });
-
-        choices.push({
-          text: f.checked320 ? "Room 320 (already checked)" : "Check Room 320 (likely chaos).",
-          disabled: f.checked320,
-          onChoose: () => go("room320")
-        });
-
-        choices.push({
-          text: "Go to the stairwell (water rushing) before checking more rooms.",
-          onChoose: () => go("stairwell_flood")
-        });
-
-        if ((f.checked316 && f.checked319 && f.checked320) || state.flags.foundSource){
-          choices.push({
-            text: "Finish evacuation: get everyone outside and let responders handle it.",
-            onChoose: () => go("final_evacuate")
-          });
-        } else {
-          choices.push({
-            text: "Try to find the source of the smell (dangerous, but could save everyone).",
-            onChoose: () => go("find_source")
-          });
-        }
-
-        setChoices(choices);
-      }
-
-      function sceneRoom319(){
-        setTitle("Room 319 — The Boys");
-        state.location = "Houck House — Room 319";
-        state.flags.checked319 = true;
-
-        const john = state.people.john;
-        const mo = state.people.mo;
-        const cole = state.people.cole;
-        const roshen = state.people.roshen;
-
-        // If they already died earlier (from end conditions), just return
-        if (!john.alive && !mo.alive && !cole.alive && !roshen.alive){
-          setStory("<p>Room 319 is silent.</p>");
-          setChoices([{ text:"Back to hall", onChoose: () => go("check_rooms") }]);
-          return;
-        }
-
-        setStory(`
-          <p>The door to 319 is cracked. Inside, the air is <strong>thick</strong>.</p>
-          <p>John is by the window, pale. Mo is already up, alert. Cole looks annoyed. Roshen is half‑awake with a headset on.</p>
-          <p>John whispers: “Bro… I thought it was just like… a weird fart thing. But it’s not.”</p>
-          <p>You need them moving <strong>now</strong>.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Put Mo in charge: “Mo, get everyone out. Now.”",
-            onChoose: () => {
-              state.flags.gotMoHelp = true;
-              addLog("You put Mo in charge in 319.");
-              safetyDelta(+8, "Mo moves fast and gets them moving.");
-              closureDelta(-2, "Less chaos reduces complaints.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Order them out aggressively: “Evacuate. No debate.”",
-            onChoose: () => {
-              addLog("You order 319 to evacuate immediately.");
-              safetyDelta(+5, "They move, arguing the whole way.");
-              // Cole might linger
-              if (Math.random() < 0.35){
-                injureGroupPenalty("Cole lingered arguing and inhaled fumes");
-                safetyDelta(-6, "Cole’s stubbornness slows things down.");
-              }
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Try to calm John: “Open the window, deep breaths, then leave.”",
-            onChoose: () => {
-              addLog("You calm John and open the window.");
-              safetyDelta(+3, "Fresh air helps for a moment.");
-              // If no evacuation action taken, risk
-              if (!state.flags.evacuated && !state.flags.pulledAlarm){
-                safetyDelta(-6, "Time lost.");
-              }
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneRoom316(){
-        setTitle("Room 316 — The Girls");
-        state.location = "Houck House — Room 316";
-        state.flags.checked316 = true;
-
-        const ella = state.people.ella;
-        const emma = state.people.emma;
-        const sophia = state.people.sophia;
-        const mallory = state.people.mallory;
-
-        setStory(`
-          <p>You knock and enter 316. Ella is already trying to “mom” everyone into a plan.</p>
-          <p>Emma is doing controlled breathing like it’s a yoga class. Sophia is loud: “THIS IS SO BAD.” Mallory is grabbing shoes and keys.</p>
-          <p>Emma looks at you: “Mitchell, if people panic, they’ll trample each other. We need calm.”</p>
-          <p>What’s your move?</p>
-        `);
-
-        setChoices([
-          {
-            text: "Use Emma’s yoga calm: “Emma, lead breathing—get them moving calmly.”",
-            onChoose: () => {
-              state.flags.gotEmmaYogaBreath = true;
-              addLog("Emma leads calming breaths; people move with less panic.");
-              safetyDelta(+7, "Less panic, smoother evacuation.");
-              closureDelta(-3, "Fewer complaints later.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Use Ella’s mom-energy: “Ella, escort people to the stairs. Keep them together.”",
-            onChoose: () => {
-              addLog("Ella escorts people like a mom on a field trip.");
-              safetyDelta(+6, "Order improves.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Stop Sophia from making it worse: “Sophia, quiet. Help Mallory carry essentials.”",
-            onChoose: () => {
-              addLog("You redirect Sophia into helping instead of yelling.");
-              safetyDelta(+3, "Some chaos avoided.");
-              // small chance Sophia still escalates
-              if (Math.random() < 0.25){
-                closureDelta(+6, "Sophia posts about it; rumors spread.");
-                addLog("Sophia posts on social media. Admin attention increases.");
-              }
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneRoom320(){
-        setTitle("Room 320 — The Storm");
-        state.location = "Houck House — Room 320";
-        state.flags.checked320 = true;
-
-        const myliana = state.people.myliana;
-        const karissa = state.people.karissa;
-        const laynie = state.people.laynie;
-
-        setStory(`
-          <p>As you approach 320, you hear arguing. The smell is strong here.</p>
-          <p>Myliana is already mad. Karissa is doing the baby voice thing while panicking. Laynie is acting like she’s in charge.</p>
-          <p>Myliana snaps: “I’m not leaving because <em>she</em> said so.” Laynie snaps back. Karissa squeaks. It’s chaos.</p>
-          <p>You need them out without a fight.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Authority voice: “Enough. Everyone out—now.”",
-            onChoose: () => {
-              addLog("You use RA authority to shut it down.");
-              // 50/50 chance it works cleanly
-              if (Math.random() < 0.55){
-                safetyDelta(+6, "They actually listen (rare).");
-              } else {
-                injureGroupPenalty("they argued in the hallway");
-                safetyDelta(-6, "Argument wastes time.");
-              }
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Talk to Myliana privately: “Help me save people. I need you calm.”",
-            onChoose: () => {
-              state.flags.gotMylianaToChill = true;
-              addLog("You get Myliana to chill and help move people.");
-              safetyDelta(+9, "Myliana becomes an enforcer—in a good way.");
-              closureDelta(-2, "Less fighting, less admin heat.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Let Laynie ‘lead’ if it gets them moving (risky ego play).",
-            onChoose: () => {
-              addLog("You let Laynie lead to move faster.");
-              safetyDelta(+3, "They move, but it’s messy.");
-              closureDelta(+6, "Laynie later claims credit; drama spreads.");
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneStairwellFlood(){
-        setTitle("Stairwell — Water Rush");
-        state.location = "Houck House — Stairwell (near Floor 3)";
-        state.threat = "Gas leak + flooding";
-
-        const usedTowels = state.flags.usedTowels;
-
-        setStory(`
-          <p>You crack open the stairwell door. A wave of humid air hits you.</p>
-          <p>Water is pouring down from above like someone left a faucet in the sky. The steps are slick.</p>
-          <p>If water reaches electrical panels, everything gets worse. If the smell is gas, humidity can trap it.</p>
-          <p>You have seconds to decide how to reduce damage.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Block the water flow using towels / trash cans / anything nearby.",
-            disabled: usedTowels,
-            onChoose: () => {
-              state.flags.usedTowels = true;
-              addLog("You try to redirect water with towels and bins.");
-              safetyDelta(+6, "Flood damage slows.");
-              // but time cost if you haven't evacuated
-              if (!state.flags.evacuated && !state.flags.pulledAlarm){
-                safetyDelta(-4, "Time lost while people still inside.");
-              }
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Do not fight the water—prioritize evacuation and let responders handle it.",
-            onChoose: () => {
-              addLog("You prioritize evacuation over property.");
-              safetyDelta(+4, "You keep the focus on lives.");
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Search downstairs quickly for Sam (Floor 1) to see if he knows the cause.",
-            onChoose: () => {
-              addLog("You head downstairs to find Sam.");
-              go("talk_sam");
-            }
-          }
-        ]);
-      }
-
-      function sceneTalkSam(){
-        setTitle("Floor 1 — ‘King of Houck’");
-        state.location = "Houck House — Floor 1 Lobby";
-
-        state.flags.spokeToSam = true;
-
-        setStory(`
-          <p>You rush to Floor 1. Sam is there like he owns the building.</p>
-          <p>Sam squints at you. “Mitchell… I already told people not to mess with stuff.”</p>
-          <p>You ask what happened. Sam says: “Somebody on 4 was messing with a <strong>science lab container</strong> from Celeste Lab.
-          I saw them bragging earlier. Now water is coming down the stairwell too. This place is cooked.”</p>
-          <p>If that’s true, you might find the source and stop the worst of it. Or you could just get everyone out.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Believe Sam and search for the source near the stairwell / vent area.",
-            onChoose: () => {
-              addLog("You decide to search for the source based on Sam’s info.");
-              closureDelta(+4, "Investigating increases risk, but might save lives.");
-              go("find_source");
-            }
-          },
-          {
-            text: "Ignore Sam’s theory and return to Floor 3 to continue evacuation sweeps.",
-            onChoose: () => {
-              addLog("You ignore Sam and return to Floor 3.");
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneFindSource(){
-        setTitle("Find the Source (High Risk)");
-        state.location = "Houck House — Floor 3 (near stairwell/vents)";
-        state.threat = "Gas leak + flooding";
-
-        setStory(`
-          <p>You head toward the strongest smell near the stairwell vents.</p>
-          <p>Your eyes sting. The air feels wrong.</p>
-          <p>You spot a soaked cardboard box and a cracked plastic container with a <span class="mono">Celeste Lab</span> sticker.
-          Something is leaking, and the floodwater is spreading it.</p>
-          <p>There are two smart options and one heroic-stupid option.</p>
-        `);
-
-        setChoices([
-          {
-            text: "Do the safe thing: back away, close the area, and focus on evacuation. (Let responders handle it.)",
-            onChoose: () => {
-              addLog("You back away and focus on evacuation.");
-              safetyDelta(+4, "You avoid exposure.");
-              state.flags.foundSource = true;
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Contain it using gloves / trash bag / wet towels as a barrier (careful).",
-            onChoose: () => {
-              addLog("You attempt careful containment with what you have.");
-              state.flags.foundSource = true;
-
-              // Success chance improved if you previously used towels or called 911/alarm
-              let chance = 0.55;
-              if (state.flags.usedTowels) chance += 0.10;
-              if (state.flags.called911 || state.flags.pulledAlarm) chance += 0.10;
-
-              if (Math.random() < chance){
-                safetyDelta(+14, "Containment works enough to reduce fumes.");
-                closureDelta(+6, "Still a major incident report.");
-              } else {
-                safetyDelta(-18, "You get a bad exposure trying to contain it.");
-                injureGroupPenalty("chemical exposure while attempting containment");
-                closureDelta(+10, "Incident severity increases.");
-              }
-
-              go("check_rooms");
-            }
-          },
-          {
-            text: "Pick it up and run it outside yourself (hero move).",
-            onChoose: () => {
-              addLog("You grab the container and try to run it out.");
-              state.flags.foundSource = true;
-
-              // High risk: may kill someone depending on prior actions
-              let deathRoll = 0.55;
-              if (state.flags.called911) deathRoll -= 0.10;
-              if (state.flags.pulledAlarm) deathRoll -= 0.05;
-              if (state.flags.gotMoHelp) deathRoll -= 0.05;
-              if (state.flags.gotEmmaYogaBreath) deathRoll -= 0.05;
-
-              if (Math.random() < deathRoll){
-                // random casualty among main characters (excluding Mitchell player)
-                const aliveIds = Object.keys(state.people).filter(id => state.people[id].alive);
-                if (aliveIds.length > 0){
-                  const victim = aliveIds[Math.floor(Math.random() * aliveIds.length)];
-                  kill(victim, "exposure during the hero run");
-                } else {
-                  safetyDelta(-10, "The situation worsens.");
-                }
-                closureDelta(+12, "Massive incident.");
-              } else {
-                safetyDelta(+18, "You get it outside and away from the floor.");
-                closureDelta(+8, "Incident still logged.");
-              }
-
-              go("check_rooms");
-            }
-          }
-        ]);
-      }
-
-      function sceneFinalEvacuate(){
-        setTitle("Final Evacuation");
-        state.location = "Outside Houck House";
-        state.threat = "Gas leak + flooding";
-
-        const deadCount = Object.values(state.people).filter(p => !p.alive).length;
-
-        let msg = `
-          <p>You push the last stragglers out. Sirens approach in the distance.</p>
-          <p>People from Floor 3 are gathered outside — some coughing, some angry, some filming.</p>
-          <p>You look back at Houck House. You did what you could.</p>
-        `;
-
-        // Determine ending outcome by score
-        const score = state.safety - deadCount * 12 - Math.max(0, state.dormClosureRisk - 50) * 0.4;
-
-        if (deadCount === 0 && state.safety >= 70 && state.dormClosureRisk < 70){
-          msg += `<div class="ending good"><strong>Best outcome:</strong> Everyone makes it out. Damage is contained. Houck House stays open.</div>`;
-          setStory(msg);
-          setChoices([{ text:"See ending", onChoose: () => go("ending_saved") }]);
-        } else if (deadCount <= 2 && score >= 40){
-          msg += `<div class="ending neutral"><strong>Mixed outcome:</strong> Most survive, but Houck’s future is shaky.</div>`;
-          setStory(msg);
-          setChoices([{ text:"See ending", onChoose: () => go("ending_saved") }]);
-        } else {
-          msg += `<div class="ending bad"><strong>Bad outcome:</strong> Too much injury, chaos, or death. Admin is furious.</div>`;
-          setStory(msg);
-          setChoices([{ text:"See ending", onChoose: () => go("ending_dorm_closed") }]);
-        }
-      }
-
-      // ====== ENDINGS ======
-      function endingSaved(){
-        setTitle("Ending — Houck House Survives (For Now)");
-        state.location = "Outside Houck House";
-        state.threat = "Contained";
-
-        const deadCount = Object.values(state.people).filter(p => !p.alive).length;
-        const alive = alivePeople().length;
-
-        let grade = "C";
-        if (deadCount === 0 && state.safety >= 70 && state.dormClosureRisk < 70) grade = "A";
-        else if (deadCount <= 1 && state.safety >= 55) grade = "B";
-        else if (deadCount <= 3) grade = "C";
-        else grade = "D";
-
-        setStory(`
-          <p>Fire/EMS arrives. They take over. You give a report: smells, flooding, the possible Celeste Lab container.</p>
-          <p>Later, OSU housing sends an email: <strong>“Houck House will remain open pending repairs and investigation.”</strong></p>
-          <p>People talk about you all week. Some call you a hero. Some say you “overreacted.”</p>
-
-          <div class="ending good">
-            <p><strong>Result:</strong> ${alive} alive / ${Object.values(state.people).length} total.</p>
-            <p><strong>RA Grade:</strong> ${grade}</p>
-            <p><strong>Dorm Safety:</strong> ${state.safety} / 100</p>
-            <p><strong>Closure Risk:</strong> ${state.dormClosureRisk} / 100</p>
-          </div>
-
-          <p class="tiny">Want more? We can add: Scott Dining Hall aftermath, Thr3es/Big Bar rumors, Taylor Tower flooding crossover, Jones Tower accessibility evacuation, Celeste Lab investigation, and more.</p>
-        `);
-
-        setChoices([
-          { text:"Restart", onChoose: restart }
-        ]);
-      }
-
-      function endingDormClosed(){
-        setTitle("Ending — Houck House Gets Shut Down");
-        state.location = "OSU Housing Office (in your nightmares)";
-        state.threat = "Aftermath";
-
-        setStory(`
-          <p>The incident becomes a campus story. People argue about blame: the flood, the fumes, the panic, the “Celeste Lab container.”</p>
-          <p>OSU Housing decides it’s too risky.</p>
-
-          <div class="ending bad">
-            <p><strong>Official notice:</strong> “Houck House will be temporarily closed for repairs and safety review.”</p>
-            <p>That “temporary” word feels… suspicious.</p>
-          </div>
-
-          <p>You did some things right, but not enough to save Houck from consequences.</p>
-          <p class="tiny">If you want, we can add a “second chance” chapter where you fight to reopen Houck by solving the mystery.</p>
-        `);
-
-        setChoices([
-          { text:"Restart", onChoose: restart }
-        ]);
-      }
-
-      function endingDisaster(){
-        setTitle("Ending — Total Disaster");
-        state.location = "Houck House";
-        state.threat = "Uncontrolled";
-
-        setStory(`
-          <p>The smell overwhelms the floor. Water spreads the contamination. People slip in the stairwell.</p>
-          <p>You lose control of the situation.</p>
-
-          <div class="ending bad">
-            <p><strong>Result:</strong> injuries spike, panic spreads, and responders arrive too late to prevent major harm.</p>
-            <p>Houck House becomes a cautionary tale.</p>
-          </div>
-        `);
-
-        setChoices([
-          { text:"Restart", onChoose: restart }
-        ]);
-      }
-
-      function endingEveryoneDies(){
-        setTitle("Ending — Nobody Makes It");
-        state.location = "Houck House — Floor 3";
-        state.threat = "Worst case";
-
-        setStory(`
-          <p>The combination of fumes and flooding becomes unstoppable.</p>
-          <p>Doors jam. People argue. People panic.</p>
-
-          <div class="ending bad">
-            <p><strong>Outcome:</strong> Too many die. Houck House is finished.</p>
-          </div>
-
-          <p class="tiny">This ending is avoidable. Try calling 911 early, evacuating fast, and keeping 320 from fighting.</p>
-        `);
-
-        setChoices([
-          { text:"Restart", onChoose: restart }
-        ]);
-      }
-
-      // ====== SAVE / LOAD / RESTART ======
-      function restart(){
-        state = freshState();
-        addLog("New run started.");
-        render();
-      }
-
-      function saveGame(){
+      // ====== Save / Load Run ======
+      function saveRun(){
         try{
-          localStorage.setItem("save_houck_house", JSON.stringify(state));
-          addLog("Game saved.");
+          localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+          addLog("Run saved.");
           render();
-        }catch(e){
-          alert("Save failed (browser storage blocked).");
-        }
+        }catch{ alert("Save failed (storage blocked).") }
       }
-
-      function loadGame(){
+      function loadRun(){
         try{
-          const raw = localStorage.getItem("save_houck_house");
-          if (!raw){
-            alert("No save found yet.");
-            return;
-          }
+          const raw = localStorage.getItem(SAVE_KEY);
+          if (!raw){ alert("No run save found yet."); return; }
           const loaded = JSON.parse(raw);
-          // minimal validation
-          if (!loaded || typeof loaded !== "object" || !loaded.people){
+          if (!loaded || typeof loaded !== "object" || !loaded.people || !loaded.player){
             alert("Save data looks corrupted.");
             return;
           }
           state = loaded;
-          addLog("Save loaded.");
+          addLog("Run loaded.");
           render();
-        }catch(e){
-          alert("Load failed.");
+        }catch{ alert("Load failed."); }
+      }
+
+      // ====== Leaderboard data ======
+      function loadLocalScores(){
+        try{
+          const raw = localStorage.getItem(LOCAL_SCORES_KEY);
+          if (!raw) return [];
+          const arr = JSON.parse(raw);
+          return Array.isArray(arr) ? arr : [];
+        }catch{ return []; }
+      }
+      function saveLocalScores(arr){
+        localStorage.setItem(LOCAL_SCORES_KEY, JSON.stringify(arr));
+      }
+      function addLocalScore(entry){
+        const scores = loadLocalScores();
+        scores.push(entry);
+        scores.sort((a,b) => (b.rating - a.rating) || (b.endedAt - a.endedAt));
+        saveLocalScores(scores.slice(0,20));
+      }
+
+      function renderLeaderboard(scores){
+        if (!scores || scores.length === 0){
+          $("leaderboard").innerHTML = `<div class=\"hint\">No scores yet.</div>`;
+          return;
+        }
+        const rows = scores.map((s,i) => `
+          <tr>
+            <td class=\"mono\">${i+1}</td>
+            <td>${escapeHtml(s.profile || "?")}</td>
+            <td>${escapeHtml(s.threatName || "?")}</td>
+            <td class=\"right mono\">${Number(s.rating).toFixed(1)}</td>
+            <td class=\"right mono\">${Number(s.deaths)}</td>
+          </tr>
+        `).join("");
+
+        $("leaderboard").innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Profile</th>
+                <th>Threat</th>
+                <th class=\"right\">Rating</th>
+                <th class=\"right\">Deaths</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+      }
+
+      async function refreshLeaderboard(){
+        if (firebaseEnabled){
+          $("lbNote").textContent = "Global leaderboard (Firestore /scores).";
+          try{
+            const scores = await fb.getTopScores();
+            renderLeaderboard(scores);
+          }catch(e){
+            console.error(e);
+            $("lbNote").textContent = "Firebase error. Showing local backup.";
+            renderLeaderboard(loadLocalScores());
+          }
+        } else {
+          $("lbNote").textContent = "Local-only leaderboard (Firebase not configured yet).";
+          renderLeaderboard(loadLocalScores());
         }
       }
 
-      $("btnRestart").onclick = restart;
-      $("btnSave").onclick = saveGame;
-      $("btnLoad").onclick = loadGame;
+      // ====== Scenes ======
+      function go(sceneId){ state.scene = sceneId; render(); }
 
-      // ====== START ======
-      addLog("You clock in as RA Mitchell on Floor 3.");
-      render();
-    </script>
-  </body>
-</html>
+      function render(){
+        updateBars();
+
+        if (!sceneIsEnding(state.scene)){
+          if (!state.player.alive){
+            state.scene = "end_mitchell_dead";
+          } else if (state.closureRisk >= 90){
+            state.scene = "end_dorm_closed";
+          } else if (deadResidents() >= 6){
+            state.scene = "end_mass_casualty";
+          } else if (state.safety <= 8){
+            state.scene = "end_disaster";
+          }
+        }
+
+        switch(state.scene){
+          case "start": return sceneStart();
+          case "first_move": return sceneFirstMove();
+          case "sweep": return sceneSweep();
+          case "room319": return sceneRoom319();
+          case "room316": return sceneRoom316();
+          case "room320": return sceneRoom320();
+          case "investigate": return sceneInvestigate();
+          case "finalize": return sceneFinalize();
+
+          case "end_success": return endSuccess();
+          case "end_dorm_closed": return endDormClosed();
+          case "end_disaster": return endDisaster();
+          case "end_mass_casualty": return endMassCasualty();
+          case "end_mitchell_dead": return endMitchellDead();
+          default:
+            setTitle("Error");
+            setStory("<p>Unknown scene.</p>");
+            setChoices([{ text:"New Run", onChoose: newRun }]);
+        }
+      }
+
+      function sceneStart(){
+        setTitle("New Run Setup");
+        state.location = "Houck House — Floor 3 (RA Desk)";
+
+        setStory(`
+          <div class=\"split\">
+            <div>
+              <div class=\"spriteRow\">
+                ${spriteBlock("mitchell", "Mitchell")}
+                <div>
+                  <p class=\"mono\"><strong>You are Mitchell</strong> — Floor 3 RA, Junior.</p>
+                  <p><strong>Goal:</strong> keep as many people alive as possible. Your run ends with a <strong>0–10 rating</strong>.</p>
+                  <p class=\"tiny\">Inside jokes are allowed. Bad decisions are not.</p>
+                </div>
+              </div>
+              <div class=\"ending neutral\">
+                <p><strong>Tonight’s random threat:</strong> ${escapeHtml(state.threatName)}</p>
+                <p class=\"tiny\">${escapeHtml(state.threatOpener)}</p>
+                <p class=\"tiny\">${escapeHtml(state.threatNotes)}</p>
+              </div>
+            </div>
+            <div>
+              <p class=\"sectionTitle\">Profile name (for the leaderboard)</p>
+              <input class=\"text\" id=\"profileInput\" placeholder=\"Type a name\" value=\
